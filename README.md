@@ -1,5 +1,4 @@
 <h1 align="center">OpenAttack</h1>
-
 <p align="center">
   <a target="_blank">
     <img src="https://github.com/thunlp/OpenAttack/workflows/Test/badge.svg?branch=master" alt="Github Runner Covergae Status">
@@ -126,13 +125,19 @@ attack_eval.eval(dataset, visualize=True)
 
 OpenAttack incorporates many handy components which can be easily assembled into new attack model. 
 
-[Here](./examples/custom_attacker.py) gives an example of how to design a simple word swap attack model.
+[Here](./examples/custom_attacker.py) gives an example of how to design a simple attack model which shuffles the tokens in the original sentence.
 
 #### Advanced: Adversarial Training
 
 OpenAttack can easily generate adversarial examples by attacking instances in the training set, which can be added to original training data set to retrain a more robust victim model, i.e., adversarial training. 
 
 [Here](./examples/adversarial_training.py)  gives an example of how to conduct adversarial training with OpenAttack.
+
+#### Advanced: Design a Customized Evaluation Metric
+
+OpenAttack supports designing a customized adversarial attack evaluation metric.
+
+[Here](./examples/custom_eval.py)  gives an example of how to add BLEU score as a customized evaluation metric to evaluate adversarial attacks.
 
 ## Attack Models
 
@@ -151,6 +156,7 @@ Here is the list of currently involved attack models.
   - (SCPN) **Adversarial Example Generation with Syntactically Controlled Paraphrase Networks**. *Mohit Iyyer, John Wieting, Kevin Gimpel, Luke Zettlemoyer*. NAACL-HLT 2018. `blind` [[pdf](https://www.aclweb.org/anthology/N18-1170)] [[code&data](https://github.com/miyyer/scpn)]
   - (GAN) **Generating Natural Adversarial Examples**. *Zhengli Zhao, Dheeru Dua, Sameer Singh*. ICLR 2018. `decision` [[pdf](https://arxiv.org/pdf/1710.11342.pdf)] [[code](https://github.com/zhengliz/natural-adversary)]
 - Word-level
+  - (SememePSO) **Word-level Textual Adversarial Attacking as Combinatorial Optimization**. *Yuan Zang, Fanchao Qi, Chenghao Yang, Zhiyuan Liu, Meng Zhang, Qun Liu and Maosong Sun*. ACL 2020. `score` [[pdf](https://www.aclweb.org/anthology/2020.acl-main.540.pdf)] [[code](https://github.com/thunlp/SememePSO-Attack)]
   - (TextFooler) **Is BERT Really Robust? A Strong Baseline for Natural Language Attack on Text Classification and Entailment**. *Di Jin, Zhijing Jin, Joey Tianyi Zhou, Peter Szolovits*. AAAI-20. `score` [[pdf](https://arxiv.org/pdf/1907.11932v4)] [[code](https://github.com/wqj111186/TextFooler)]
   - (PWWS) **Generating Natural Language Adversarial Examples through Probability Weighted Word Saliency**. *Shuhuai Ren, Yihe Deng, Kun He, Wanxiang Che*. ACL 2019. `score` [[pdf](https://www.aclweb.org/anthology/P19-1103.pdf)] [[code](https://github.com/JHL-HUST/PWWS/)]
   - (Genetic) **Generating Natural Language Adversarial Examples**. *Moustafa Alzantot, Yash Sharma, Ahmed Elgohary, Bo-Jhang Ho, Mani Srivastava, Kai-Wei Chang*. EMNLP 2018. `score` [[pdf](https://www.aclweb.org/anthology/D18-1316)] [[code](https://github.com/nesl/nlp_adversarial_examples)]
@@ -172,6 +178,7 @@ Following table illustrates the comparison of the attack models.
 |     SEA     |    Decision     |   Sentence   | Rule-based paraphrasing                             |
 |    SCPN     |      Blind      |   Sentence   | Paraphrasing                                        |
 |     GAN     |    Decision     |   Sentence   | Text generation by encoder-decoder                  |
+|  SememePSO  |      Score      |     Word     | Particle Swarm Optimization-based word substitution |
 | TextFooler  |      Score      |     Word     | Greedy word substitution                            |
 |    PWWS     |      Score      |     Word     | Greedy word substitution                            |
 |   Genetic   |      Score      |     Word     | Genetic algorithm-based word substitution           |
